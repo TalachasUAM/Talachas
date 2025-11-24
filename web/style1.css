@@ -51,8 +51,6 @@ body {
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
 }
 
-
-
 .btn {
   background-color: #4029d665;
   border: none;
@@ -129,4 +127,49 @@ body {
   animation: fadeIn 1s ease forwards;
   opacity: 0;
   transform: translateY(20px);
+}
+
+#dropzone {
+  position: relative;
+  display: inline-block;
+}
+
+#dropzone img.placed {
+  position: absolute;
+  pointer-events: auto;
+  user-select: none;
+}
+
+.sidebar {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+  z-index: 1000;
+
+  /* ⭐ PARA EL SCROLL ⭐ */
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Opcional: estiliza el scrollbar para que combine */
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.3);
+  border-radius: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.1);
 }
