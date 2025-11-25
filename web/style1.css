@@ -154,14 +154,11 @@ body {
   border-bottom-right-radius: 12px;
   box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
   z-index: 1000;
-
-  /* ⭐ PARA EL SCROLL ⭐ */
   max-height: 90vh;
   overflow-y: auto;
 }
 
-/* Opcional: estiliza el scrollbar para que combine */
-.sidebar::-webkit-scrollbar {
+.sideba:-webkit-scrollbar {
   width: 8px;
 }
 
