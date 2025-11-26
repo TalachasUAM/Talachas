@@ -1,3 +1,4 @@
+// Hacer todas las imágenes "draggable"
 document.querySelectorAll(".draggable").forEach(img => {
   img.draggable = true;
 
@@ -9,13 +10,10 @@ document.querySelectorAll(".draggable").forEach(img => {
 
 const dropzone = document.getElementById("dropzone");
 
-dropzone.addEventListener("dragover", e => {
-  e.preventDefault();
-});
+dropzone.addEventListener("dragover", e => e.preventDefault());
 
 dropzone.addEventListener("drop", e => {
   e.preventDefault();
-
   const src = e.dataTransfer.getData("src");
   const width = e.dataTransfer.getData("width");
 
@@ -24,15 +22,22 @@ dropzone.addEventListener("drop", e => {
   newImg.width = width;
   newImg.classList.add("placed");
 
+  // Posición dentro del dropzone
   const rect = dropzone.getBoundingClientRect();
-  newImg.style.left = (e.clientX - rect.left - width/2) + "px";
-  newImg.style.top = (e.clientY - rect.top - width/2) + "px";
+  newImg.style.position = "absolute";
+  newImg.style.left = (e.clientX - rect.left - width / 2) + "px";
+  newImg.style.top = (e.clientY - rect.top - width / 2) + "px";
 
   dropzone.appendChild(newImg);
 
   hacerMovible(newImg);
+
+  // Animación de entrada
+  newImg.style.transform = "scale(0.5)";
+  setTimeout(() => newImg.style.transform = "scale(1)", 10);
 });
 
+// Función para mover imágenes dentro del dropzone
 function hacerMovible(el) {
   el.addEventListener("mousedown", e => {
     let shiftX = e.clientX - el.getBoundingClientRect().left;
@@ -45,7 +50,6 @@ function hacerMovible(el) {
     }
 
     document.addEventListener("mousemove", mover);
-
     document.addEventListener("mouseup", () => {
       document.removeEventListener("mousemove", mover);
     }, { once: true });
