@@ -55,3 +55,32 @@ function hacerMovible(el) {
     }, { once: true });
   });
 }
+
+// BOTÓN PARA LIMPIAR EL CANVAS
+document.getElementById("clearBtn").addEventListener("click", () => {
+
+  // Selecciona todas las imágenes colocadas en el dropzone
+  const colocadas = dropzone.querySelectorAll(".placed");
+
+  colocadas.forEach(img => img.remove());
+
+});
+
+document.getElementById("captureBtn").addEventListener("click", () => {
+  const zona = document.getElementById("dropzone");
+
+  html2canvas(zona, {
+    backgroundColor: null, // respeta tu fondo transparente
+    scale: 2                // mejora la calidad
+  }).then(canvas => {
+
+    // Convertir captura en imagen
+    const image = canvas.toDataURL("image/png");
+
+    // Crear descarga automática
+    const link = document.createElement("a");
+    link.href = image;
+    link.download = "captura.png";
+    link.click();
+  });
+});
