@@ -1,4 +1,6 @@
-// Hacer todas las imágenes "draggable"
+// ---------------------------
+// HABILITAR DRAG DESDE LA BARRA LATERAL
+// ---------------------------
 document.querySelectorAll(".draggable").forEach(img => {
   img.draggable = true;
 
@@ -22,22 +24,24 @@ dropzone.addEventListener("drop", e => {
   newImg.width = width;
   newImg.classList.add("placed");
 
-  // Posición dentro del dropzone
   const rect = dropzone.getBoundingClientRect();
   newImg.style.position = "absolute";
   newImg.style.left = (e.clientX - rect.left - width / 2) + "px";
   newImg.style.top = (e.clientY - rect.top - width / 2) + "px";
 
   dropzone.appendChild(newImg);
-
   hacerMovible(newImg);
 
-  // Animación de entrada
-  newImg.style.transform = "scale(0.5)";
-  setTimeout(() => newImg.style.transform = "scale(1)", 10);
+  // Animación pequeña
+  newImg.animate(
+    [{ transform: "scale(0.5)" }, { transform: "scale(1)" }],
+    { duration: 150, easing: "ease-out" }
+  );
 });
 
-// Función para mover imágenes dentro del dropzone
+// ---------------------------
+// HACER LAS PIEZAS MOVIBLES
+// ---------------------------
 function hacerMovible(el) {
   el.addEventListener("mousedown", e => {
     let shiftX = e.clientX - el.getBoundingClientRect().left;
@@ -56,31 +60,71 @@ function hacerMovible(el) {
   });
 }
 
-// BOTÓN PARA LIMPIAR EL CANVAS
+// ---------------------------
+// BORRAR TODO
+// ---------------------------
 document.getElementById("clearBtn").addEventListener("click", () => {
-
-  // Selecciona todas las imágenes colocadas en el dropzone
-  const colocadas = dropzone.querySelectorAll(".placed");
-
-  colocadas.forEach(img => img.remove());
-
+  dropzone.querySelectorAll(".placed").forEach(img => img.remove());
 });
 
+// ---------------------------
+// P5: CAPTURA
+// ---------------------------
+let pg;
+
+function setup() {
+  noCanvas();
+}
+
 document.getElementById("captureBtn").addEventListener("click", () => {
-  const zona = document.getElementById("dropzone");
 
-  html2canvas(zona, {
-    backgroundColor: null, // respeta tu fondo transparente
-    scale: 2                // mejora la calidad
-  }).then(canvas => {
+  const rect = dropzone.getBoundingClientRect();
 
-    // Convertir captura en imagen
-    const image = canvas.toDataURL("image/png");
+  if (pg) pg.remove();
+  pg = createGraphics(rect.width, rect.height);
 
-    // Crear descarga automática
-    const link = document.createElement("a");
-    link.href = image;
-    link.download = "captura.png";
-    link.click();
+  // CARGAR CUERPO BASE
+  loadImage("../assets/cuerpo.png", imgBase => {
+
+    // DIBUJAR CUERPO EN SU POSICIÓN EXACTA EN EL DROPZONE EN PANTALLA
+    const baseImg = document.querySelector(".imagen-cuerpo");
+    const baseRect = baseImg.getBoundingClientRect();
+    const dzRect = dropzone.getBoundingClientRect();
+
+    const xBase = baseRect.left - dzRect.left;
+    const yBase = baseRect.top - dzRect.top;
+    const wBase = baseRect.width;
+    const hBase = baseRect.height;
+
+    pg.image(imgBase, xBase, yBase, wBase, hBase);
+
+    // PIEZAS QUE SE HAN ARRASTRADO
+    const partes = Array.from(dropzone.querySelectorAll(".placed"));
+
+    if (partes.length === 0) {
+      save(pg, "captura.png");
+      return;
+    }
+
+    let cargadas = 0;
+
+    partes.forEach(el => {
+      loadImage(el.src, img => {
+
+        const x = parseFloat(el.style.left);
+        const y = parseFloat(el.style.top);
+        const w = el.width;
+        const h = img.height * (w / img.width);
+
+        pg.image(img, x, y, w, h);
+
+        cargadas++;
+        if (cargadas === partes.length) {
+          save(pg, "captura.png");
+        }
+      });
+    });
+
   });
+
 });
