@@ -114,22 +114,22 @@ body {
 
 .intro {
   position: absolute;
-  top: 30px;        /* Ajusta hacia abajo */
-  right: 450px;      /* Pegado al borde derecho */
+  top: 30px;
+  right: 360px;
   background: linear-gradient(135deg, #fceabb, #530753);
   padding: 5px;
-  width: 250px;     /* Tamaño fijo para que no cambie */
+  width: 250px;
   border-radius: 10px;
   font-size: 1rem;
-  text-align: left; /* Puede ser center si prefieres */
+  text-align: left;
   color: #3e2723;
   font-family: 'Segoe UI', sans-serif;
   animation: fadeIn 1.5s ease;
-  z-index: 50;      /* Para que quede arriba de todo */
+  z-index: 50;
 }
 
 .intro1 { top: 2px; right: 545px; }
 .intro2 { top: 250px; right: 550px; }
-.intro3 { top: 260px; right: -2px; }
-.intro4 { top: 530px; right: -2px; }
-.intro5 { top: 500px; right: 550px; }
+.intro3 { top: 260px; right: -5px; }
+.intro4 { top: 500px; right: -2px; }
+.intro5 { top: 450px; right: 550px; }

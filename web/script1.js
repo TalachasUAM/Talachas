@@ -1,6 +1,3 @@
-// ---------------------------
-// HABILITAR DRAG DESDE LA BARRA LATERAL
-// ---------------------------
 document.querySelectorAll(".draggable").forEach(img => {
   img.draggable = true;
 
@@ -38,9 +35,6 @@ dropzone.addEventListener("drop", e => {
   );
 });
 
-// ---------------------------
-// HACER PIEZAS MOVIBLES
-// ---------------------------
 function hacerMovible(el) {
   el.addEventListener("mousedown", e => {
     let shiftX = e.clientX - el.getBoundingClientRect().left;
@@ -59,69 +53,6 @@ function hacerMovible(el) {
   });
 }
 
-// ---------------------------
-// BORRAR TODO
-// ---------------------------
 document.getElementById("clearBtn").addEventListener("click", () => {
   dropzone.querySelectorAll(".placed").forEach(img => img.remove());
 });
-
-// ---------------------------
-// P5: CAPTURA SIN DEFORMACIÓN
-// ---------------------------
-let pg;
-
-function setup() {
-  noCanvas();
-}
-
-document.getElementById("captureBtn").addEventListener("click", () => {
-
-  const rect = dropzone.getBoundingClientRect();
-
-  if (pg) pg.remove();
-  pg = createGraphics(rect.width, rect.height);
-
-  loadImage("../assets/cuerpo.png", imgBase => {
-
-    const baseImg = document.querySelector(".imagen-cuerpo");
-    const baseRect = baseImg.getBoundingClientRect();
-    const dzRect = dropzone.getBoundingClientRect();
-
-    const xBase = baseRect.left - dzRect.left;
-    const yBase = baseRect.top - dzRect.top;
-    const wBase = baseRect.width;
-    const hBase = baseRect.height;
-
-    pg.image(imgBase, xBase, yBase, wBase, hBase);
-
-    const partes = Array.from(dropzone.querySelectorAll(".placed"));
-
-    if (partes.length === 0) {
-      save(pg, "captura.png");
-      return;
-    }
-
-    let cargadas = 0;
-
-    partes.forEach(el => {
-      loadImage(el.src, img => {
-
-        const elRect = el.getBoundingClientRect();
-
-        const x = elRect.left - dzRect.left;
-        const y = elRect.top - dzRect.top;
-        const w = elRect.width;
-        const h = elRect.height;
-
-        pg.image(img, x, y, w, h);
-
-        cargadas++;
-        if (cargadas === partes.length) save(pg, "captura.png");
-      });
-    });
-
-  });
-
-});
-
