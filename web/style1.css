@@ -112,6 +112,18 @@ body {
   color: white;
 }
 
+.botonera .subir {
+  margin-top: 140px; 
+  color: white;
+}
+
+.botonera .btn {
+  width: 200px;
+  padding: 12px 0;
+  text-align: center;  
+}
+
+
 .intro {
   position: absolute;
   top: 30px;
