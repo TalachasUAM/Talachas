@@ -21,7 +21,7 @@ dropzone.addEventListener("drop", e => {
 
   const newImg = document.createElement("img");
   newImg.src = src;
-  newImg.width = width;
+  newImg.style.width = width + "px";
   newImg.classList.add("placed");
 
   const rect = dropzone.getBoundingClientRect();
@@ -32,7 +32,6 @@ dropzone.addEventListener("drop", e => {
   dropzone.appendChild(newImg);
   hacerMovible(newImg);
 
-  // Animación pequeña
   newImg.animate(
     [{ transform: "scale(0.5)" }, { transform: "scale(1)" }],
     { duration: 150, easing: "ease-out" }
@@ -40,7 +39,7 @@ dropzone.addEventListener("drop", e => {
 });
 
 // ---------------------------
-// HACER LAS PIEZAS MOVIBLES
+// HACER PIEZAS MOVIBLES
 // ---------------------------
 function hacerMovible(el) {
   el.addEventListener("mousedown", e => {
@@ -68,7 +67,7 @@ document.getElementById("clearBtn").addEventListener("click", () => {
 });
 
 // ---------------------------
-// P5: CAPTURA
+// P5: CAPTURA SIN DEFORMACIÓN
 // ---------------------------
 let pg;
 
@@ -83,10 +82,8 @@ document.getElementById("captureBtn").addEventListener("click", () => {
   if (pg) pg.remove();
   pg = createGraphics(rect.width, rect.height);
 
-  // CARGAR CUERPO BASE
   loadImage("../assets/cuerpo.png", imgBase => {
 
-    // DIBUJAR CUERPO EN SU POSICIÓN EXACTA EN EL DROPZONE EN PANTALLA
     const baseImg = document.querySelector(".imagen-cuerpo");
     const baseRect = baseImg.getBoundingClientRect();
     const dzRect = dropzone.getBoundingClientRect();
@@ -98,7 +95,6 @@ document.getElementById("captureBtn").addEventListener("click", () => {
 
     pg.image(imgBase, xBase, yBase, wBase, hBase);
 
-    // PIEZAS QUE SE HAN ARRASTRADO
     const partes = Array.from(dropzone.querySelectorAll(".placed"));
 
     if (partes.length === 0) {
@@ -111,17 +107,17 @@ document.getElementById("captureBtn").addEventListener("click", () => {
     partes.forEach(el => {
       loadImage(el.src, img => {
 
-        const x = parseFloat(el.style.left);
-        const y = parseFloat(el.style.top);
-        const w = el.width;
-        const h = img.height * (w / img.width);
+        const elRect = el.getBoundingClientRect();
+
+        const x = elRect.left - dzRect.left;
+        const y = elRect.top - dzRect.top;
+        const w = elRect.width;
+        const h = elRect.height;
 
         pg.image(img, x, y, w, h);
 
         cargadas++;
-        if (cargadas === partes.length) {
-          save(pg, "captura.png");
-        }
+        if (cargadas === partes.length) save(pg, "captura.png");
       });
     });
 
