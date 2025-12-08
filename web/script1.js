@@ -124,3 +124,4 @@ document.getElementById("captureBtn").addEventListener("click", () => {
   });
 
 });
+
