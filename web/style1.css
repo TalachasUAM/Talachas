@@ -118,20 +118,19 @@ body {
 }
 
 .botonera .intro {
-  display: inline-block;   /* hace que se comporte como un botón horizontal */
-  width: 100%;             /* ocupa todo el contenedor, o usa un ancho fijo como 300px */
-  max-width: 250px;        /* opcional, para no crecer demasiado */
-  padding: 10px 20px;      /* espacio interno del botón */
-  font-size: 12px;         /* mismo tamaño de letra que los demás botones */
-  text-align: center;      /* centrado del texto */
-  white-space: normal;     /* permite que el texto se divida en varias líneas si es largo */
-  cursor: pointer;         /* cambia el cursor al pasar sobre el botón */
-  box-sizing: border-box;  /* para que padding no aumente el ancho total */
+  display: inline-block; 
+  width: 100%;     
+  max-width: 250px;     
+  padding: 10px 20px;  
+  font-size: 12px;    
+  text-align: center; 
+  white-space: normal; 
+  cursor: pointer;  
+  box-sizing: border-box; 
   margin-top: 140px;
 }
 
 
-/* Contenedor donde se acomodan TODOS los bloques */
 .panel-derecho {
   position: fixed;      
   top: 10vh;            
@@ -141,16 +140,13 @@ body {
   gap: 20px;
   z-index: 100;
 
-  /* ✨ Activar scroll interno */
-  max-height: 80vh;     /* altura máxima visible */
-  overflow-y: auto;     /* scroll vertical */
+  max-height: 80vh; 
+  overflow-y: auto; 
   
-  /* Opcional: barra de scroll más bonita */
   scrollbar-width: thin;
   scrollbar-color: #caa34a #fceabb;
 }
 
-/* Estilo general de cada bloque */
 .intro {
   background: linear-gradient(135deg, #fceabb, #530753);
   padding: 15px;
