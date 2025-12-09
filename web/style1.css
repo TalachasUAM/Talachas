@@ -1,16 +1,15 @@
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  overflow: hidden;
-  background: linear-gradient(120deg, #336684, #65569b, #b96dad);
-  background-size: 300% 300%;
-  animation: movimientoFondo 12s ease infinite;
-}
-
-@keyframes movimientoFondo {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 80px 40px 40px 40px;
+  gap: 40px;
+  min-height: 100vh;
+  background: url("../assets/fondo2.jpeg") no-repeat center center fixed;
+  background-size: cover;
 }
 
 .sidebar {
@@ -22,7 +21,7 @@ body {
   flex-direction: column;
   gap: 15px;
   padding: 10px;
-  background-color: rgba(255,255,255,0.2);
+  background: linear-gradient(135deg, #fceabb, #530753);
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
   max-height: 90vh;
@@ -118,11 +117,6 @@ body {
   text-align: center;  
 }
 
-.intro6 { 
-  top: 300px; right: 600px; 
-}
-
-
 .intro {
   position: absolute;
   top: 30px;
@@ -144,3 +138,4 @@ body {
 .intro3 { top: 260px; right: -5px; }
 .intro4 { top: 500px; right: -2px; }
 .intro5 { top: 450px; right: 550px; }
+.intro6 { top: 500px; right: -300px; }

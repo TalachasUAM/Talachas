@@ -10,9 +10,9 @@ const previewContainer = document.getElementById('previewContainer');
 
 async function loadGallery() {
   const { data, error } = await supabase
-    .from('tabla')
+    .from('proyecto')
     .select('*')
-    .order('fecha', { ascending: false });
+    .order('url', { ascending: false });
 
   if (error) {
     console.error('Error al cargar la galería:', error);
@@ -63,7 +63,7 @@ uploadBtn.addEventListener('click', async () => {
   const { data: publicUrlData } = supabase.storage.from('Fotos').getPublicUrl(fileName);
   const imageUrl = publicUrlData.publicUrl;
 
-  const { error: insertError } = await supabase.from('melalokike').insert([{ url: imageUrl }]);
+  const { error: insertError } = await supabase.from('proyecto').insert([{ url: imageUrl }]);
 
   if (insertError) {
     alert('Error al guardar en la base de datos: ' + insertError.message);

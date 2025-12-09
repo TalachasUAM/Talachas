@@ -7,14 +7,12 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 80px 40px 40px 40px; /* <-- aumenté el padding-top para bajar todo */
+  padding: 80px 40px 40px 40px;
   gap: 40px;
   min-height: 100vh;
   background: url("assets/fondo.jpeg") no-repeat center center fixed;
   background-size: cover;
 }
-
-/*TÍTULO*/
 
 .titulo {
   font-size: 3.8rem;
@@ -24,7 +22,7 @@ body {
   line-height: 1.1;
   text-transform: uppercase;
 
-  background: #3a0ca3; /* morado profundo */
+  background: #3a0ca3;
   color: #f2e9ff;
 
   padding: 25px 50px;
@@ -35,28 +33,19 @@ body {
   animation: fadeUp 1.3s ease forwards;
   opacity: 0;
   transform: translateY(40px);
-
-  /* BAJAR AÚN MÁS EN CASO DE QUE HAYA OTROS ELEMENTOS */
   margin-top: 80px;
 }
-
-/*TEXTO*/
 
 .texto-burbuja {
   max-width: 900px;
   padding: 25px 45px;
   border-radius: 25px;
   backdrop-filter: blur(15px);
-
-  /* COLOR AJUSTADO MÁS OSCURO Y SUAVE */
   background: rgba(40, 20, 60, 0.55);
-
   animation: fadeUp 1.6s ease forwards;
   opacity: 0;
   transform: translateY(40px);
   text-align: center;
-
-  /* BAJAR UN POCO */
   margin-top: 28px;
 }
 
@@ -67,8 +56,6 @@ body {
   margin: 0;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.45);
 }
-
-/* BOTÓN */
 
 .btn-inline {
   display: inline-block;
@@ -86,7 +73,6 @@ body {
   background: #560bad;
 }
 
-/* Animación */
 
 @keyframes fadeUp {
   to {
