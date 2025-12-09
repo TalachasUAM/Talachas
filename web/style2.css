@@ -1,29 +1,48 @@
-/* ---------------------------
-   FONDO ANIMADO + BASE
----------------------------- */
-
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  min-height: 100vh;
-
-  /* Fondo animado */
-  background: linear-gradient(120deg, #336684, #65569b, #b96dad);
-  background-size: 300% 300%;
-  animation: movimientoFondo 12s ease infinite;
-
+body { font-family: sans-serif;
   text-align: center;
+  background: #90ccfb;
+  margin: 0;
 }
 
-@keyframes movimientoFondo {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+h1, h2 {
+  margin-top: 20px;}
+
+.upload-area {
+  margin: 20px;}
+
+#previewContainer {
+  margin-top: 10px;
 }
 
-/* ---------------------------
-   BOTONERA (ARRIBA DERECHA)
----------------------------- */
+#previewContainer img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+  margin-top: 10px;
+  border: 2px solid #ccc;}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px;
+}
+
+.gallery img {
+  width: 25%;
+  height: 25%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
 
 .botonera {
   position: absolute;
@@ -48,73 +67,23 @@ body {
   display: block;
 }
 
-.btn:hover {
-  transform: scale(1.05);
-  background: #7660ff;
-}
-
-/* Si usas <a> dentro del botón */
 .btn a {
   text-decoration: none;
   color: #fff;
-  display: block;
+  width: 500px;
+  padding: 12px;
 }
 
-/* ---------------------------
-   ESTILO PARA TÍTULOS
----------------------------- */
 
-h1, h2 {
-  margin-top: 20px;
-  color: white;
-  text-shadow: 0 0 6px rgba(0,0,0,0.35);
+
+body {
+  background: linear-gradient(120deg, #336684, #65569b, #b96dad, #90ccfb);
+  background-size: 300% 300%;
+  animation: movimientoFondo 12s ease infinite;
 }
 
-/* ---------------------------
-   ÁREA DE SUBIDA DE IMÁGENES
----------------------------- */
-
-.upload-area {
-  margin: 20px;
-  color: white;
-  font-weight: 600;
-}
-
-#previewContainer {
-  margin-top: 10px;
-}
-
-#previewContainer img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 0 6px rgba(0,0,0,0.2);
-  margin-top: 10px;
-  border: 2px solid #ccc;
-}
-
-/* ---------------------------
-   GALERÍA DE IMÁGENES
----------------------------- */
-
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  padding: 10px;
-}
-
-.gallery img {
-  width: 25%;
-  height: 25%;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 0 6px rgba(0,0,0,0.2);
-  transition: transform 0.2s;
-}
-
-.gallery img:hover {
-  transform: scale(1.05);
+@keyframes movimientoFondo {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

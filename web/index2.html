@@ -1,28 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tribus Urbanas</title>
-    <link rel="stylesheet" href="style2.css">
+  <meta charset="UTF-8">
+  <title>Tribus Urbanas</title>
+  <link rel="stylesheet" href="style2.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="script2.js"></script>
 </head>
 <body>
-
-  <h1>Galeria</h1>
+  <h1>Sube aqui tu captura</h1>
 
   <div class="upload-area">
     <input type="file" id="photoInput" accept="image/*">
     <button id="uploadBtn">Subir Foto</button>
     <div id="previewContainer"></div>
-  </div>
-
-  <div class="gallery" id="gallery"></div>
-
-<div class="botonera">
-    <button class="btn regresar"><a href="index1.html">Volver</a></button>
-  </div>
+    <div class="botonera">
+    <button class="btn"><a href="index1.html">Volver</a></button>
 </div>
 
-<script src="script2.js"></script>
+  </div>
+
+  <h2>Galería Global</h2>
+  <div class="gallery" id="gallery"></div>
 </body>
 </html>

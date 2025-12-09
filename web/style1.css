@@ -114,8 +114,12 @@ body {
 
 .botonera .btn {
   width: 200px;
-  padding: 12px 0;
+  padding: 12px;
   text-align: center;  
+}
+
+.intro6 { 
+  top: 300px; right: 600px; 
 }
 
 

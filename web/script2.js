@@ -1,6 +1,5 @@
-// Configura tus credenciales de Supabase aquí
-const SUPABASE_URL = "https://rqsewzppphnljpjghlzb.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJxc2V3enBwcGhubGpwamdobHpiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE2NTE0ODEsImV4cCI6MjA3NzIyNzQ4MX0.JA785SoB210vTRMfrT0tfQsW8K-3xPbn7HnyrV_97bI";
+const SUPABASE_URL = "https://ngkvjytxrgzgzvvaxnpk.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5na3ZqeXR4cmd6Z3p2dmF4bnBrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5MTYwMDEsImV4cCI6MjA3NzQ5MjAwMX0.dR2v9oZscjcu71VpO56wzSUcMLYXDS8YS_WB0i7pp1E";
 
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -52,7 +51,7 @@ uploadBtn.addEventListener('click', async () => {
   uploadBtn.textContent = "Subiendo...";
 
   const fileName = `${Date.now()}-${file.name}`;
-  const { data, error } = await supabase.storage.from('fotos').upload(fileName, file);
+  const { data, error } = await supabase.storage.from('Fotos').upload(fileName, file);
 
   if (error) {
     alert('Error al subir imagen: ' + error.message);
@@ -61,10 +60,10 @@ uploadBtn.addEventListener('click', async () => {
     return;
   }
 
-  const { data: publicUrlData } = supabase.storage.from('fotos').getPublicUrl(fileName);
+  const { data: publicUrlData } = supabase.storage.from('Fotos').getPublicUrl(fileName);
   const imageUrl = publicUrlData.publicUrl;
 
-  const { error: insertError } = await supabase.from('tabla').insert([{ url: imageUrl }]);
+  const { error: insertError } = await supabase.from('melalokike').insert([{ url: imageUrl }]);
 
   if (insertError) {
     alert('Error al guardar en la base de datos: ' + insertError.message);
